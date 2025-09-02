@@ -1,0 +1,52 @@
+---------------
+Telefons ierakstits: 02/09/2025 10:07:46
+---------------
+Ražotāja nosaukums:samsung
+Ražotāja valsts: ASV
+SIM Kartes veids: nano
+Telefona numurs: 28282828
+Telefona krāsa: melns
+Telefona operetājsistēma: android
+Telefonu ekrānu izmērs: 15.6
+HDMI pieejamība: True
+Telefona modelis: True
+Telefona svars: 360
+---------------
+Telefons ierakstits: 02/09/2025 10:10:32
+---------------
+Ražotāja nosaukums:huawei
+Ražotāja valsts: Kina
+SIM Kartes veids: nano
+Telefona numurs: 29292929
+Telefona krāsa: balts
+Telefona operetājsistēma: android
+Telefonu ekrānu izmērs: 14.5
+HDMI pieejamība: True
+Telefona modelis: True
+Telefona svars: 240
+---------------
+Telefons ierakstits: 02/09/2025 10:11:27
+---------------
+Ražotāja nosaukums:htc
+Ražotāja valsts: Kina
+SIM Kartes veids: micro
+Telefona numurs: 25252525
+Telefona krāsa: zils
+Telefona operetājsistēma: android
+Telefonu ekrānu izmērs: 12
+HDMI pieejamība: False
+Telefona modelis: False
+Telefona svars: 160
+---------------
+Telefons ierakstits: 02/09/2025 10:15:48
+---------------
+Ražotāja nosaukums:sony
+Ražotāja valsts: Kina
+SIM Kartes veids: nano
+Telefona numurs: 282828
+Telefona krāsa: balts
+Telefona operetājsistēma: android
+Telefonu ekrānu izmērs: 17.8
+HDMI pieejamība: False
+Telefona modelis: False
+Telefona svars: 250
