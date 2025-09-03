@@ -1,0 +1,8 @@
+E:\algoritmi\2prak\2prak\bin\Debug\2prak.exe.config
+E:\algoritmi\2prak\2prak\bin\Debug\2prak.exe
+E:\algoritmi\2prak\2prak\bin\Debug\2prak.pdb
+E:\algoritmi\2prak\2prak\obj\Debug\2prak.csproj.AssemblyReference.cache
+E:\algoritmi\2prak\2prak\obj\Debug\2prak.csproj.CoreCompileInputs.cache
+E:\algoritmi\2prak\2prak\obj\Debug\2prak.exe
+E:\algoritmi\2prak\2prak\obj\Debug\2prak.pdb
+E:\algoritmi\2prak\2prak\obj\Debug\2prak.exe.config
