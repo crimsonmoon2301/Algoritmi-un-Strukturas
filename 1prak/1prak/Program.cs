@@ -16,28 +16,28 @@ namespace _1prak
     }
     class razotajs
     {
-        public static string nosaukums { get; set; }
+        public static string nosaukums
     }
     class sim_karte
     {
-        public static string veids { get; set; }
-        public static int tel_numurs { get; set; }
+        public static string veids
+        public static int tel_numurs
     }
 
     class tehnika
     {
-        public static string krasa { get; set; }
+        public static string krasa
     }
     class viedierice : tehnika
     {
-        public static string operetajsistema { get; set; }
-        public static double ekrana_izmers { get; set; }
-        public static bool ir_hdmi { get; set; }
+        public static string operetajsistema
+        public static double ekrana_izmers
+        public static bool ir_hdmi
     }
     class mobilais_tel : viedierice
     {
-        public static string modelis { get; set; }
-        public static double svars { get; set; }
+        public static string modelis
+        public static double svars
     }
 
     class Program
@@ -143,3 +143,4 @@ namespace _1prak
         }
     }
 }
+
