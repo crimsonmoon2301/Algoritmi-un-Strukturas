@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace _2prak
 {
@@ -26,12 +27,13 @@ namespace _2prak
                 switch (opcija)
                 {
                     case 1:
-                        pievienoVert();
+                        pievienoVert_parbaude();
                         break;
                     case 2:
                         dzestVert();
                         break;
                     case 3:
+                        izmainitSaraksti();
                         break;
                     case 0:
                         Console.WriteLine("Darbība tiek apturēta.");
@@ -45,45 +47,266 @@ namespace _2prak
                 }
             }
         }
-        static void pievienoVert()
+        static void izmainitSaraksti()
         {
-            if (arlist.Count == 0)
+            if (arlist.Count != 0)
             {
                 Console.Clear();
-                Console.WriteLine("Cik vērtības vēlaties pievienot?\n");
-                Console.Write("\nVēlamo vērtību skaits: ");
-                int skaits = int.Parse(Console.ReadLine());
-
-                for (int i = 0; i < skaits; i++)
+                bool editstop = false;
+                while (!editstop)
                 {
-                    Console.WriteLine("Ievadiet elementu: ");
-                    string elements = Console.ReadLine();
-                    int derigsElements;
+                    Console.WriteLine("Izvēlies darbību:");
+                    Console.WriteLine("1 - Sakārtot sarakstu augošā secībā");
+                    Console.WriteLine("2 - Sakārtot sarakstu dilstošā secībā");
+                    Console.WriteLine("3 - Attēlo saraksta vērtības");
+                    Console.WriteLine("4 - Atpakaļ");
 
-                    bool veiksmigi = int.TryParse(elements, out derigsElements);
+                    Console.Write("\nIzvēlētā darbība: ");
+                    int edit = int.Parse(Console.ReadLine());
+                    switch (edit)
+                    {
+                        case 1:
+                            arlist.Sort();
+                            break;
+                        case 2:
+                            arlist.Reverse();
+                            break;
+                        case 3:
+                            foreach (int l in arlist)
+                            {
+                                Console.WriteLine(l);
+                            }
+                            Console.WriteLine($"Saraksts satur {arlist.Count} elementus");
+                            Console.WriteLine($"Saraksts norezervē {arlist.Capacity} atmiņu elementiem");
+                            if (arlist.IsReadOnly)
+                            {
+                                Console.WriteLine("Saraksts nav maināms");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Saraksts ir maināms");
+                            }
 
-                    if (veiksmigi)
-                    {
-                        arlist.Add(derigsElements);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Elements nav int tipa.");
-                        i--;
+                            if (!arlist.IsFixedSize)
+                            {
+                                Console.WriteLine("Saraksts ir dinamisks");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Saraksts nav dinamisks.");
+                            }
+
+                            break;
+                        case 4:
+                            editstop = true;
+                            Console.Clear();
+                            break;
+                        default:
+                            Console.WriteLine("Tādas opcijas nav.");
+                            break;
                     }
                 }
-                Console.WriteLine("Vērtības pievienotas. Spied jebkuru pogu, lai izietu.");
-                Console.ReadKey();
-                Console.Clear();
             }
             else
             {
-                Console.WriteLine("Saraksts eksistē ar elementiem.");
-                Console.WriteLine("Ja vēlaties pievienot jaunas vērtības, iztīriet veco sarakstu. To var izdarīt nospiežot taustiņu 2 pie galvenās izvēlnes. Darbība apturēta!");
+                Console.WriteLine("Saraksts ir tukšs. Darbība apturēta!");
                 Console.ReadKey();
                 Console.Clear();
             }
         }
+        static void pievienoVert_parbaude()
+        {
+            if (arlist.Count == 0)
+            {
+                pievienoVert();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Saraksts eksistē ar elementiem.");
+                Console.WriteLine("Ja vēlaties pievienot jaunas vērtības, ir ieteicams veco sarakstu iztīrīt, lai nav problēmas pievienošanā.");
+                Console.WriteLine("To var izdarīt nospiežot taustiņu 2 pie galvenās izvēlnes");
+                Console.WriteLine("Ir iespējams papildināt veco sarakstu ar jauniem elementiem, tikai tas var izraisīt neierastas kļūdas.");
+                Console.WriteLine("\nVai turpināt? (True/False)");
+                Console.Write("\nIzvēlētā darbība: ");
+                bool atbilde = bool.Parse(Console.ReadLine());
+                if (atbilde)
+                {
+                    pievienoVert();
+                }
+                else
+                {
+                    Console.Clear();
+                }
+            }
+        }
+
+        static void pievienoVert()
+        {
+            Console.Clear();
+            bool stopadd = false;
+            while (!stopadd)
+            {
+                Console.Clear();
+                Console.WriteLine("Norādiet kādu veida pievienošanas darbību vēlaties veikt.");
+                Console.WriteLine("1 - Pievienot noteiktu elementu skaitu pēc kārtas");
+                Console.WriteLine("2 - Pievienot elementu konkrētā vietā");
+                Console.WriteLine("3 - Pievienot elementu kopu konkrētā vietā");
+                Console.WriteLine("4 - Pievienot elementu kopu sarakstu beigās");
+                Console.WriteLine("5 - Atpakaļ");
+                Console.Write("\nIzvēlētā darbība: ");
+                int darbiba = int.Parse(Console.ReadLine());
+                switch (darbiba)
+                {
+                    case 1: // Pievieno noteiktu elementu skaitu pēc kārtas
+                        Console.WriteLine("Cik elementus vēlaties pievienot?");
+                        Console.Write("\nVēlamo elementu skaits: ");
+                        int skaits = int.Parse(Console.ReadLine());
+                        for (int i = 0; i < skaits; i++)
+                        {
+                            Console.WriteLine("Ievadiet elementu: ");
+                            string elements = Console.ReadLine();
+                            int derigsElements;
+
+                            bool veiksmigi = int.TryParse(elements, out derigsElements);
+
+                            if (veiksmigi)
+                            {
+                                arlist.Add(derigsElements);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Elements nav int tipa.");
+                                i--;
+                            }
+                        }
+                        Console.WriteLine("Vērtības pievienotas. Spied jebkuru pogu, lai izietu.");
+                        Console.ReadKey();
+                        break;
+                    case 2: // Pievieno elementu konkrētā vietā
+                        Console.Write("\nIerakstiet elementu kuru vēlaties pievienot:");
+                        string element = Console.ReadLine();
+
+                        int derigsElement;
+                        bool veiksmigs = int.TryParse(element, out derigsElement);
+
+                        Console.Write("\nNorādiet vietu (index) kur vēlaties pievienot elementu sarakstā: ");
+                        string range = Console.ReadLine();
+
+                        int derigsRange;
+                        bool veiksmigsRange = int.TryParse(range, out derigsRange);
+
+                        if (veiksmigs && veiksmigsRange)
+                        {
+                            arlist.Insert(derigsRange, derigsElement);
+                            Console.WriteLine($"Elements {derigsElement} ir pievienots ar index Nr.{derigsRange}");
+                            Console.WriteLine("Spiediet jebkuru pogu, lai ietu atpakaļ uz izvēlni");
+                            Console.ReadKey();
+                        }
+                        else if (!veiksmigs || !veiksmigsRange)
+                        {
+                            Console.WriteLine("Elements nav int tipa, vai arī norādīta nederīga vieta");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nav norādīti elementi un vieta.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        break;
+                    case 3: 
+                        // Pievieno elementu kopu konkrētā vietā
+                        // Pagaidu saraksts
+                        ArrayList tempList = new ArrayList();
+                        Console.WriteLine("Norādiet index: ");
+                        string index1 = Console.ReadLine();
+                        bool derigsIndex1;
+                        int derigs1;
+                        derigsIndex1 = int.TryParse(index1, out derigs1);
+
+                        if(!derigsIndex1)
+                        {
+                            Console.WriteLine("Norādītais index nav derīgs.");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Cik elementus vēlaties pievienot?");
+                            Console.Write("\nVēlamo elementu skaits: ");
+                            int skaitsKopa = int.Parse(Console.ReadLine());
+                            bool veiksmigsElementsKopa;
+                            for (int i = 0; i < skaitsKopa; i++)
+                            {
+                                Console.Write("\nNorādiet elementu: ");
+                                string elementsKopa = Console.ReadLine();
+
+                                // Pārbaude
+                                int derigsElementsKopa;
+                                veiksmigsElementsKopa = int.TryParse(elementsKopa, out derigsElementsKopa);
+
+                                if (veiksmigsElementsKopa)
+                                {
+                                    tempList.Add(derigsElementsKopa);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Elements nav int tipa.");
+                                    i--;
+                                }
+                            }
+                            arlist.InsertRange(derigs1, tempList);
+                            Console.WriteLine("Vērtības pievienotas. Spied jebkuru pogu, lai izietu.");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+                        break;
+                    case 4:
+                        // Pievieno elementu kopu sarakstu beigās
+                        // Pagaidu saraksts
+                        ArrayList tempList1 = new ArrayList();
+                        Console.WriteLine("Cik elementus vēlaties pievienot?");
+                        Console.Write("\nVēlamo elementu skaits: ");
+                        int skaitsKopa1 = int.Parse(Console.ReadLine());
+                        bool veiksmigsElementsKopa1;
+                        for (int i = 0; i < skaitsKopa1; i++)
+                        {
+                            Console.Write("\nNorādiet elementu: ");
+                            string elementsKopa1 = Console.ReadLine();
+
+                            // Pārbaude
+                            int derigsElementsKopa1;
+                            veiksmigsElementsKopa1 = int.TryParse(elementsKopa1, out derigsElementsKopa1);
+
+                            if (veiksmigsElementsKopa1)
+                            {
+                                tempList1.Add(derigsElementsKopa1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Elements nav int tipa.");
+                                i--;
+                            }
+                        }
+                        arlist.AddRange(tempList1);
+                        Console.WriteLine("Vērtības pievienotas. Spied jebkuru pogu, lai izietu.");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+                    case 5:
+                        stopadd = true;
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.WriteLine("Tādas opcijas nav.");
+                        break;
+                }
+            }
+        }
+        
         static void dzestVert()
         {
             if (arlist.Count != 0)
@@ -98,7 +321,7 @@ namespace _2prak
                     }
                     Console.WriteLine();
 
-                    Console.WriteLine("Izvēlieties savu darbību: ");
+                    Console.WriteLine("Izvēlieties savu darbību:");
                     Console.WriteLine("1 - Dzēst pēc indeksa");
                     Console.WriteLine("2 - Dzēst noteiktu elementu sarakstā");
                     Console.WriteLine("3 - Iztīrīt visu sarakstu");
@@ -138,7 +361,32 @@ namespace _2prak
                                 break;
                             }
                             break;
-                        case 2: // Dzēst pēc elementa. TODO
+                        case 2: // Dzēst pēc elementa.
+                            Console.WriteLine("Norādiet elementu dzēšanai.");
+                            Console.Write("\nNorādītais elements: ");
+                            string elements = Console.ReadLine();
+                            int derigsElements;
+
+                            bool veiksmigi = int.TryParse(elements, out derigsElements);
+                            if (!veiksmigi)
+                            {
+                                Console.WriteLine("Noradītais elements nav int tipa.");
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            else if (!arlist.Contains(derigsElements))
+                            {
+                                Console.WriteLine("Sarakstā nav šāda elementa.");
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                arlist.Remove(derigsElements);
+                                Console.WriteLine($"Norādītais elements {derigsElements} ir noņemts no saraksta.");
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
                             break;
                         case 3: // Iztīra visu listi.
                             if (arlist.Count != 0)
@@ -150,7 +398,7 @@ namespace _2prak
                                 Console.WriteLine("Liste neeksistē!");
                             }
                             break;
-                        case 4: // Iztīra pēc norādītā apgabala. TODO
+                        case 4: // Iztīra pēc norādītā apgabala.
                             try
                             {
                                 Console.Write("\nIevadiet sākuma index vērtību apgabalam: ");
