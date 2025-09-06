@@ -1,0 +1,8 @@
+E:\algoritmi\github\2prak\3uzd\bin\Debug\3uzd.exe.config
+E:\algoritmi\github\2prak\3uzd\bin\Debug\3uzd.exe
+E:\algoritmi\github\2prak\3uzd\bin\Debug\3uzd.pdb
+E:\algoritmi\github\2prak\3uzd\obj\Debug\3uzd.csproj.AssemblyReference.cache
+E:\algoritmi\github\2prak\3uzd\obj\Debug\3uzd.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\2prak\3uzd\obj\Debug\3uzd.exe
+E:\algoritmi\github\2prak\3uzd\obj\Debug\3uzd.pdb
+E:\algoritmi\github\2prak\3uzd\obj\Debug\3uzd.exe.config
