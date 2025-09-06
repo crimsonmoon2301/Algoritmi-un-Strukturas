@@ -1,0 +1,7 @@
+E:\algoritmi\github\2prak\stack\bin\Debug\stack.exe.config
+E:\algoritmi\github\2prak\stack\bin\Debug\stack.exe
+E:\algoritmi\github\2prak\stack\bin\Debug\stack.pdb
+E:\algoritmi\github\2prak\stack\obj\Debug\stack.csproj.AssemblyReference.cache
+E:\algoritmi\github\2prak\stack\obj\Debug\stack.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\2prak\stack\obj\Debug\stack.exe
+E:\algoritmi\github\2prak\stack\obj\Debug\stack.pdb
