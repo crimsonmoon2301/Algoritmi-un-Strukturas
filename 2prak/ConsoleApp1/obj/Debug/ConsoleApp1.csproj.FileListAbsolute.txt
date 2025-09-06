@@ -1,0 +1,8 @@
+E:\algoritmi\github\2prak\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+E:\algoritmi\github\2prak\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+E:\algoritmi\github\2prak\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+E:\algoritmi\github\2prak\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.AssemblyReference.cache
+E:\algoritmi\github\2prak\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\2prak\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+E:\algoritmi\github\2prak\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+E:\algoritmi\github\2prak\ConsoleApp1\obj\Debug\ConsoleApp1.exe.config
