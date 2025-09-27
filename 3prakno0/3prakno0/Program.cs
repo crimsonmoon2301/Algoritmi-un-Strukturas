@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -132,7 +132,7 @@ namespace _3prakno0
                     count++;
                     current = current.NextItem;
                 }
-                return count; // Lai ir salasāmāk. Pievienojot pirmo grāmatu rāda 0, šis ir lai rāda 1
+                return count; // Atgriež skaitu kas funkcionē kā indekss. Priekš grāmatu skaita, tur pieskaitīja klāt +1 lai ir salasāmāks.
             }
         }
         public void RemoveAt(int index) {
@@ -156,14 +156,16 @@ namespace _3prakno0
                 Console.ReadKey();
                 return;
             }
-            if (index == Count() - 1)
+            if (index == Count() - 1) // Ja ir 4 indeksi un 4 elementi, 4. elements uzreiz nederēs. Mistiskā kārtā, bez šī if statement, viņš manuāli neņem nost pēdējo elementu.
+                // 4 elementi ar indeksiem: 0 1 2 3 
+                // Šī funkcija nodrošina to, ka elements kas palika pēdējais pēc visu citu elementu izdzēšanas, lai programma neavarē, domājot ka indekss ir ārpus robežām, kaut tā nav.
             {
                 pirms = head;
-                while(pirms.NextItem.NextItem != null )
+                while(pirms.NextItem.NextItem != null ) // Ja aiznākamais elements nav null, aizvieto elementu ar izvēlēto indeksu ar iepriekšējo.
                 {
                     pirms = pirms.NextItem;
                 }
-                pirms.NextItem = null;
+                pirms.NextItem = null; // Nākamais elements ir null, jeb atvieno pēdējo elementu no saraksta.
                 return;
 
             }
@@ -181,7 +183,41 @@ namespace _3prakno0
              Console.ReadKey();
         }
       
-        public Gramata ElementAt(int index) { return null; }
+        public Gramata ElementAt(int index)
+        {
+            if(head == null)
+            {
+                Console.WriteLine("Saraksts ir tukšs.");
+                Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                Console.ReadKey();
+            }
+            if(index < 0 || index > Count()+1)
+            {
+                Console.WriteLine("Index atrodas ārpus robežām");
+                Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                Console.ReadKey();
+            }
+            Item read = head;
+            int currentindex = 0;
+
+            while (currentindex < index)
+            {
+                read = read.NextItem;
+                currentindex++;
+            }
+            if(index !=null && read == null)
+            {
+                Console.WriteLine("Index atrodas ārpus robežām un/vai elements bija nesen dzēsts.");
+                Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine($"Grāmata ar index nr. {index} atrasta.");
+                read.gramata.Izvadit();
+            }
+            return null;
+        }
         public int FirstIndexOf(Gramata g)
         {
             int fail = -1; // Ja gadienā neizpildās, lai ir ko atgriezt.
@@ -194,11 +230,10 @@ namespace _3prakno0
             }
             Item current = head;
             int index = 0;
-            Item lastItem = head;
 
             while (current != null)
             {
-                // Salīdzina ar saraksta esošo informāciju ar objektu. Nav labākais veids, bet strādā tīri skaisti.
+                // Salīdzina ar saraksta esošo informāciju ar objektu. Nav labākais veids, bet strādā tīri skaisti. Ja sakrīt, izsauc grāmatu klases izvadīšanas funkciju un paņem tagadējo elementu kā referenci.
                 if (current.gramata.nosaukums == g.nosaukums &&
                     current.gramata.autors == g.autors &&
                     current.gramata.lpp == g.lpp)
@@ -211,6 +246,12 @@ namespace _3prakno0
 
                 current = current.NextItem;
                 index++;
+            }
+            if (current == null)
+            {
+                Console.WriteLine("Saraksts nesen tika iztīrīts. Darbība apturēta.");
+                Console.WriteLine("Spied jebkuru pogu, lai turpinātu.");
+                return fail;
             }
             return index;
         }
@@ -231,7 +272,7 @@ namespace _3prakno0
 
             while (current != null)
             {
-                lastItem = current;     // saglabā pašreizējo kā kandidātu
+                lastItem = current;    
                 lastIndex = index;      // saglabā tā indeksu
                 current = current.NextItem;
                 index++;
@@ -298,16 +339,39 @@ namespace _3prakno0
                         int index = Convert.ToInt32(Console.ReadLine());
                         myList.RemoveAt(index);
                         break;
-                    case 6: // Vēl jāpilnveido.
+                    case 6: // Strādā tīri ok. Tikai jāpievaktē dziļākā testēšanā.
                         Console.Write("Ievadi indeksu, kuru meklēt: ");
                         int index3 = Convert.ToInt32(Console.ReadLine());
                         myList.ElementAt(index3);
                         break;
                     case 7:
-                        Console.WriteLine(myList.FirstIndexOf(myList.head.gramata)); // Paņem no saraksta pirmo grāmatu. Mocījos vairākas stundas šeit, vienkārši lai atjeģtos ka nav īstais objekts ņemts. man gribas raudāt.
+                        // Foršs veids kā apiet nullexception, ja liste nav inicializēta pirms palaiž šo funkciju.
+                        if (myList == null || myList.head == null)
+                        {
+                            Console.WriteLine("Saraksts ir tukšs.");
+                            Console.WriteLine("Spied jebkuru pogu, lai turpinātu.");
+                            Console.ReadKey();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine(myList.FirstIndexOf(myList.head.gramata)); // Paņem no saraksta pirmo grāmatu. Mocījos vairākas stundas šeit, vienkārši lai atjeģtos ka nav īstais objekts ņemts. man gribas raudāt.
+                        }
                         break;
                     case 8:
-                        Console.WriteLine(myList.LastIndexOf(myList.head.gramata)); // Līdzīgi kā ar case 7, tikai ar pēdējo elementu kas tika pievienots.
+
+                        // Foršs veids kā apiet nullexception, ja liste nav inicializēta pirms palaiž šo funkciju.
+                        if (myList == null || myList.head == null)
+                        {
+                            Console.WriteLine("Saraksts ir tukšs.");
+                            Console.WriteLine("Spied jebkuru pogu, lai turpinātu.");
+                            Console.ReadKey();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine(myList.LastIndexOf(myList.head.gramata)); // Līdzīgi kā ar case 7, tikai ar pēdējo elementu kas tika pievienots.
+                        }
                         break;
                     case 9:
                         myList.Clear();
