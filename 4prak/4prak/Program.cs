@@ -203,7 +203,10 @@ namespace _4prak
             if (index == 0)
             {
                 head = head.NextItem;
-                head.PreviousItem = null; // Ja ir pirmais elements izdzēsts, previous item pointeris ir null.
+                if (head !=null) // Speciāls gadījums, ja gadienā mēģina izdzēst pēdējo atlikušo elementu sarakstā. Bez šī visulaiku meta Nullexception avāriju.
+                {
+                    head.PreviousItem = null; // Ja ir pirmais elements izdzēsts, previous item pointeris ir null.
+                }
                 Console.WriteLine($"Grāmata izdzēsta ar index {index}");
                 Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
                 Console.ReadKey();
@@ -421,4 +424,5 @@ namespace _4prak
             }
         }
     }
+
 }
