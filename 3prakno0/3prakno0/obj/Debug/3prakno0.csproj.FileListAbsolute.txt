@@ -1,0 +1,8 @@
+E:\algoritmi\github\3prakno0\3prakno0\bin\Debug\3prakno0.exe.config
+E:\algoritmi\github\3prakno0\3prakno0\bin\Debug\3prakno0.exe
+E:\algoritmi\github\3prakno0\3prakno0\bin\Debug\3prakno0.pdb
+E:\algoritmi\github\3prakno0\3prakno0\obj\Debug\3prakno0.csproj.AssemblyReference.cache
+E:\algoritmi\github\3prakno0\3prakno0\obj\Debug\3prakno0.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\3prakno0\3prakno0\obj\Debug\3prakno0.exe
+E:\algoritmi\github\3prakno0\3prakno0\obj\Debug\3prakno0.pdb
+E:\algoritmi\github\3prakno0\3prakno0\obj\Debug\3prakno0.exe.config
