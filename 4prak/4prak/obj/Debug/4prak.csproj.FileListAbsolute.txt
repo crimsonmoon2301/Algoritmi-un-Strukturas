@@ -1,0 +1,8 @@
+E:\algoritmi\github\4prak\4prak\bin\Debug\4prak.exe.config
+E:\algoritmi\github\4prak\4prak\bin\Debug\4prak.exe
+E:\algoritmi\github\4prak\4prak\bin\Debug\4prak.pdb
+E:\algoritmi\github\4prak\4prak\obj\Debug\4prak.csproj.AssemblyReference.cache
+E:\algoritmi\github\4prak\4prak\obj\Debug\4prak.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\4prak\4prak\obj\Debug\4prak.exe
+E:\algoritmi\github\4prak\4prak\obj\Debug\4prak.pdb
+E:\algoritmi\github\4prak\4prak\obj\Debug\4prak.exe.config
