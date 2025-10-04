@@ -1,8 +1,0 @@
-E:\algoritmi\github\3prak\3prak\bin\Debug\3prak.exe.config
-E:\algoritmi\github\3prak\3prak\bin\Debug\3prak.exe
-E:\algoritmi\github\3prak\3prak\bin\Debug\3prak.pdb
-E:\algoritmi\github\3prak\3prak\obj\Debug\3prak.csproj.AssemblyReference.cache
-E:\algoritmi\github\3prak\3prak\obj\Debug\3prak.csproj.CoreCompileInputs.cache
-E:\algoritmi\github\3prak\3prak\obj\Debug\3prak.exe
-E:\algoritmi\github\3prak\3prak\obj\Debug\3prak.pdb
-E:\algoritmi\github\3prak\3prak\obj\Debug\3prak.exe.config
