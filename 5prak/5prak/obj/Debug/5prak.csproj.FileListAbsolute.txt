@@ -1,8 +1,0 @@
-E:\algoritmi\github\5prak\5prak\bin\Debug\5prak.exe.config
-E:\algoritmi\github\5prak\5prak\bin\Debug\5prak.exe
-E:\algoritmi\github\5prak\5prak\bin\Debug\5prak.pdb
-E:\algoritmi\github\5prak\5prak\obj\Debug\5prak.csproj.AssemblyReference.cache
-E:\algoritmi\github\5prak\5prak\obj\Debug\5prak.csproj.CoreCompileInputs.cache
-E:\algoritmi\github\5prak\5prak\obj\Debug\5prak.exe
-E:\algoritmi\github\5prak\5prak\obj\Debug\5prak.pdb
-E:\algoritmi\github\5prak\5prak\obj\Debug\5prak.exe.config
