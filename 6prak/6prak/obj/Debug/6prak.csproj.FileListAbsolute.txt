@@ -1,0 +1,8 @@
+E:\algoritmi\github\6prak\6prak\bin\Debug\6prak.exe.config
+E:\algoritmi\github\6prak\6prak\bin\Debug\6prak.exe
+E:\algoritmi\github\6prak\6prak\bin\Debug\6prak.pdb
+E:\algoritmi\github\6prak\6prak\obj\Debug\6prak.csproj.AssemblyReference.cache
+E:\algoritmi\github\6prak\6prak\obj\Debug\6prak.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\6prak\6prak\obj\Debug\6prak.exe
+E:\algoritmi\github\6prak\6prak\obj\Debug\6prak.pdb
+E:\algoritmi\github\6prak\6prak\obj\Debug\6prak.exe.config
