@@ -1,0 +1,8 @@
+E:\algoritmi\github\5prakfull\5prakfull\bin\Debug\5prakfull.exe.config
+E:\algoritmi\github\5prakfull\5prakfull\bin\Debug\5prakfull.exe
+E:\algoritmi\github\5prakfull\5prakfull\bin\Debug\5prakfull.pdb
+E:\algoritmi\github\5prakfull\5prakfull\obj\Debug\5prakfull.csproj.AssemblyReference.cache
+E:\algoritmi\github\5prakfull\5prakfull\obj\Debug\5prakfull.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\5prakfull\5prakfull\obj\Debug\5prakfull.exe
+E:\algoritmi\github\5prakfull\5prakfull\obj\Debug\5prakfull.pdb
+E:\algoritmi\github\5prakfull\5prakfull\obj\Debug\5prakfull.exe.config
