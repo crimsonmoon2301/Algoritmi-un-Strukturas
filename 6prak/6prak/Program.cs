@@ -23,16 +23,52 @@ namespace _6prak
     {
         public string nosaukums;
         public int lpp_skaits;
-        private string ievadlpp;
+        //private string ievadlpp;
 
-        public Gramata(string nosaukums, string ievadlpp)
+        public Gramata(string nosaukums, int derigslpp)
         {
             this.nosaukums = nosaukums;
-            this.ievadlpp = ievadlpp;
+            this.lpp_skaits = derigslpp;
         }
     }
     internal class Program
     {
+        static void PrintDict(Dictionary<string, Auto> dict)
+        {
+            int index = 0;
+            foreach (var item in dict)
+            {
+                Console.WriteLine("===========");
+                Console.WriteLine($"Auto numurs(key): {item.Key}");
+                Console.WriteLine($"Auto nosaukums: {item.Value.nosaukums}");
+                Console.WriteLine($"Auto motoru tilpums: {item.Value.dzineja_tilp}");
+                Console.WriteLine($"Index: {index}");
+                //foreach (var cars in dict.Values)
+                //{
+                //    Console.WriteLine($"Auto nosaukums: {cars.nosaukums}");
+                //    Console.WriteLine($"Auto Tilpums: {cars.dzineja_tilp}");
+                //}
+                index++;
+            }
+            Console.WriteLine("===========");
+            Console.WriteLine($"Elementu skaits: {dict.Count}");
+            Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        static void PrintHash(Hashtable ht)
+        {
+            foreach (DictionaryEntry item in ht)
+            {
+                Console.WriteLine("===========");
+                Console.WriteLine($"Grāmatu autors (key): {item.Key}");
+
+                Gramata gramatuinfo = (Gramata)item.Value;
+
+                Console.WriteLine($"Grāmatu nosaukums: {gramatuinfo.nosaukums}");
+                Console.WriteLine($"Grāmatu lapas skaits: {gramatuinfo.lpp_skaits}");
+            }
+        }
         static void Hash()
         {
             bool stophash = false;
@@ -70,7 +106,7 @@ namespace _6prak
                                 Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
                                 Console.ReadKey();
                                 Console.Clear();
-                                break;
+                                continue;
                             }
                             else
                             {
@@ -88,7 +124,7 @@ namespace _6prak
                                 }
                                 else
                                 {
-                                    ht.Add(ievadautors, new Gramata(nosaukums, ievadlpp));
+                                    ht.Add(ievadautors, new Gramata(nosaukums, derigslpp));
                                     Console.WriteLine("Grāmata pievienota sarakstā");
                                     Console.ReadKey();
                                     Console.Clear();
@@ -96,6 +132,38 @@ namespace _6prak
                             }
                             break;
                         case 2:
+                            if (ht.Count == 0)
+                            {
+                                Console.WriteLine("Hashtable ir tukša");
+                                Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                            }
+                            else
+                            {
+                                PrintHash(ht);
+
+                                Console.Write("\nIevadi autoru kuru vēlies izdzēst: ");
+                                string autors = Console.ReadLine();
+
+                                if (!ht.ContainsKey(autors))
+                                {
+                                    Console.WriteLine("Tāds autors hashtable sarakstā nav");
+                                    Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                    break;
+                                }
+                                else
+                                {
+                                    ht.Remove(autors);
+                                    Console.WriteLine("Autors noņemts no hash saraksta");
+                                    Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                }
+                            }
                             break;
                         case 3:
                             if (ht.Count == 0)
@@ -108,18 +176,7 @@ namespace _6prak
                             }
                             else
                             {
-                                foreach (DictionaryEntry item in ht)
-                                {
-                                    Console.WriteLine("===========");
-                                    Console.WriteLine($"Grāmatu autors (key): {item.Key}");
-                                    Console.WriteLine($"Grāmatu nosaukums: {item.Value}");
-                                    Console.WriteLine($"Lapaspušu skaits: {item.Value}");
-                                    //foreach (var cars in dict.Values)
-                                    //{
-                                    //    Console.WriteLine($"Auto nosaukums: {cars.nosaukums}");
-                                    //    Console.WriteLine($"Auto Tilpums: {cars.dzineja_tilp}");
-                                    //}
-                                }
+                                PrintHash(ht);
                                 Console.WriteLine("===========");
                                 Console.WriteLine($"Elementu skaits: {ht.Count}");
                                 Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
@@ -128,6 +185,38 @@ namespace _6prak
                             }
                             break;
                         case 4:
+                            if (ht.Count == 0)
+                            {
+                                Console.WriteLine("Hashtable ir tukša");
+                                Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                                Console.ReadKey();
+                                Console.Clear();
+                                break;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.Write("Ievadi autoru pēc kura meklēt: ");
+                                string meklautoru = Console.ReadLine();
+                                if (!ht.ContainsKey(meklautoru))
+                                {
+                                    Console.WriteLine("Tāds autors hashtable sarakstā nav");
+                                    Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                                    Console.ReadKey();
+                                    Console.Clear();
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Autora {meklautoru} grāmatu informācija: ");
+                                    Gramata gramatuinfo = (Gramata)ht[meklautoru];
+                                    Console.WriteLine($"Grāmatu nosaukums: {gramatuinfo.nosaukums}");
+                                    Console.WriteLine($"Grāmatu lapu skaits: {gramatuinfo.lpp_skaits}");
+                                }
+                                Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
+                                Console.ReadKey();
+                                Console.Clear();
+                            }
                             break;
                         case 5:
                             if (ht.Count == 0)
@@ -268,26 +357,7 @@ namespace _6prak
                             }
                             else
                             {
-                                int index = 0;
-                                foreach (var item in dict)
-                                {
-                                    Console.WriteLine("===========");
-                                    Console.WriteLine($"Auto numurs(key): {item.Key}");
-                                    Console.WriteLine($"Auto nosaukums: {item.Value.nosaukums}");
-                                    Console.WriteLine($"Auto motoru tilpums: {item.Value.dzineja_tilp}");
-                                    Console.WriteLine($"Index {index}");
-                                    //foreach (var cars in dict.Values)
-                                    //{
-                                    //    Console.WriteLine($"Auto nosaukums: {cars.nosaukums}");
-                                    //    Console.WriteLine($"Auto Tilpums: {cars.dzineja_tilp}");
-                                    //}
-                                    index++;
-                                }
-                                Console.WriteLine("===========");
-                                Console.WriteLine($"Elementu skaits: {dict.Count}");
-                                Console.WriteLine("Spied jebkuru pogu, lai turpinātu");
-                                Console.ReadKey();
-                                Console.Clear();
+                                PrintDict(dict);
                             }
                             break;
                         case 4:
