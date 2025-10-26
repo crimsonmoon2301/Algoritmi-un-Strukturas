@@ -13,6 +13,7 @@ namespace algoritmi_7prak
         static Random rand = new Random();
         static int operacijasBubble = 0;
         static int operacijasInsert = 0;
+        static int operacijasShell = 0;
         static string csv = "rezultati.csv";
         static void Main(string[] args)
         {
@@ -120,23 +121,43 @@ namespace algoritmi_7prak
                         operacijasBubble = 0;
                         bubbleSort(masscopy, n);
                         sw.WriteLine($"{n},{veids},BubbleSort,{operacijasBubble}");
+
+                        int[] masscopy1 = (int[])mass.Clone();
+                        operacijasInsert = 0;
+                        insertionSort(masscopy1);
+                        sw.WriteLine($"{n},{veids},InsertionSort,{operacijasInsert}");
+
+                        int[] masscopy2 = (int[])mass.Clone();
+                        operacijasShell = 0;
+                        ShellSort(masscopy2);
+                        sw.WriteLine($"{n},{veids},ShellSort,{operacijasShell}");
+                        sw.WriteLine("==========");
+
                     }
                     
-                    foreach (string veids in veidi)
-                    {
-                        int[] mass = MasivuIzveide(n, veids);
+                    //foreach (string veids in veidi)
+                    //{
+                    //    int[] mass = MasivuIzveide(n, veids);
 
-                        int[] masscopy = (int[])mass.Clone();
-                        operacijasInsert = 0;
-                        insertionSort(masscopy);
-                        sw.WriteLine($"{n},{veids},InsertionSort,{operacijasInsert}");
-                    }
-                    sw.WriteLine("==========");
+                    //    int[] masscopy = (int[])mass.Clone();
+                    //    operacijasInsert = 0;
+                    //    insertionSort(masscopy);
+                    //    sw.WriteLine($"{n},{veids},InsertionSort,{operacijasInsert}");
+                    //}
+                    //foreach (string veids in veidi)
+                    //{
+                    //    int[] mass = MasivuIzveide(n, veids);
+
+                    //    int[] masscopy = (int[])mass.Clone();
+                    //    operacijasInsert = 0;
+                    //    insertionSort(masscopy);
+                    //    sw.WriteLine($"{n},{veids},InsertionSort,{operacijasInsert}");
+                    //}
                 }
             }
             //printArray(mass, n);
 
-            Console.WriteLine($"Rezultāti saglabāti {csv}");
+            Console.WriteLine($"Rezultāti saglabāti Šeit: {csv}");
         }
         static int[] MasivuIzveide(int n, string veids)
         {
@@ -160,13 +181,13 @@ namespace algoritmi_7prak
                 case "Gadijuma":
                     for (int i = 0; i < n; i++)
                     {
-                        arr[i] = rand.Next(0, n);
+                        arr[i] = rand.Next(n);
                     }
                     break;
                 case "Unique": // es hvz ko te likt. Met ārpus robežām.
                     for (int i = 0; i < n; i++)
                     {
-                        arr[i] = rand.Next(0, n);
+                        arr[i] = rand.Next(n);
                         bool isDuplicate = false;
                         for (int j = 0; j < i; j++)
                         {
@@ -198,6 +219,41 @@ namespace algoritmi_7prak
             }
             return arr;
         }
+        static int ShellSort(int[] arr)
+        {
+            int n = arr.Length;
+
+            // Start with a big gap, 
+            // then reduce the gap
+            for (int gap = n / 2; gap > 0; gap /= 2)
+            {
+                // Do a gapped insertion sort for this gap size.
+                // The first gap elements a[0..gap-1] are already
+                // in gapped order keep adding one more element
+                // until the entire array is gap sorted
+                for (int i = gap; i < n; i += 1)
+                {
+                    // add a[i] to the elements that have
+                    // been gap sorted save a[i] in temp and
+                    // make a hole at position i
+                    int temp = arr[i];
+
+                    // shift earlier gap-sorted elements up until
+                    // the correct location for a[i] is found
+                    int j;
+                    for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                    {
+                        arr[j] = arr[j - gap];
+                        operacijasShell++;
+                    }
+                    // put temp (the original a[i]) 
+                    // in its correct location
+                    arr[j] = temp;
+                }
+                
+            }
+            return 0;
+        }
         static void bubbleSort(int[] arr, int n)
         {
             int i, j, temp;
@@ -225,63 +281,7 @@ namespace algoritmi_7prak
             }
         }
 
-        private static void Quick_Sort(int[] arr, int left, int right)
-        {
-            // Check if there are elements to sort
-            if (left < right)
-            {
-                // Find the pivot index
-                int pivot = Partition(arr, left, right);
-
-                // Recursively sort elements on the left and right of the pivot
-                if (pivot > 1)
-                {
-                    Quick_Sort(arr, left, pivot - 1);
-                }
-                if (pivot + 1 < right)
-                {
-                    Quick_Sort(arr, pivot + 1, right);
-                }
-            }
-        }
-
-        // Method to partition the array
-        private static int Partition(int[] arr, int left, int right)
-        {
-            // Select the pivot element
-            int pivot = arr[left];
-
-            // Continue until left and right pointers meet
-            while (true)
-            {
-                // Move left pointer until a value greater than or equal to pivot is found
-                while (arr[left] < pivot)
-                {
-                    left++;
-                }
-
-                // Move right pointer until a value less than or equal to pivot is found
-                while (arr[right] > pivot)
-                {
-                    right--;
-                }
-
-                // If left pointer is still smaller than right pointer, swap elements
-                if (left < right)
-                {
-                    if (arr[left] == arr[right]) return right;
-
-                    int temp = arr[left];
-                    arr[left] = arr[right];
-                    arr[right] = temp;
-                }
-                else
-                {
-                    // Return the right pointer indicating the partitioning position
-                    return right;
-                }
-            }
-        }
+        
         static void insertionSort(int[] arr)
         {
             int n = arr.Length;
@@ -295,28 +295,29 @@ namespace algoritmi_7prak
                    of their current position */
                 while (j >= 0 && arr[j] > key)
                 {
-                    operacijasInsert++;
                     arr[j + 1] = arr[j];
                     j = j - 1;
+                    operacijasInsert++;
                 }
+                operacijasInsert++;
                 arr[j + 1] = key;
                 
             }
         }
-        static void printArrayInsert(int[] arr)
-        {
-            int n = arr.Length;
-            for (int i = 0; i < n; ++i)
-                Console.Write(arr[i] + " ");
+        //static void printArrayInsert(int[] arr)
+        //{
+        //    int n = arr.Length;
+        //    for (int i = 0; i < n; ++i)
+        //        Console.Write(arr[i] + " ");
 
-            Console.WriteLine();
-        }
-        static void printArray(int[] arr, int size)
-        {
-            int i;
-            for (i = 0; i < size; i++)
-                Console.Write(arr[i] + " ");
-            Console.WriteLine();
-        }
+        //    Console.WriteLine();
+        //}
+        //static void printArray(int[] arr, int size)
+        //{
+        //    int i;
+        //    for (i = 0; i < size; i++)
+        //        Console.Write(arr[i] + " ");
+        //    Console.WriteLine();
+        //}
     }
 }
