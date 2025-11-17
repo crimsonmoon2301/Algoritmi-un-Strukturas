@@ -1,0 +1,8 @@
+E:\algoritmi\github\9prak\9prak\bin\Debug\9prak.exe.config
+E:\algoritmi\github\9prak\9prak\bin\Debug\9prak.exe
+E:\algoritmi\github\9prak\9prak\bin\Debug\9prak.pdb
+E:\algoritmi\github\9prak\9prak\obj\Debug\9prak.csproj.AssemblyReference.cache
+E:\algoritmi\github\9prak\9prak\obj\Debug\9prak.csproj.CoreCompileInputs.cache
+E:\algoritmi\github\9prak\9prak\obj\Debug\9prak.exe
+E:\algoritmi\github\9prak\9prak\obj\Debug\9prak.pdb
+E:\algoritmi\github\9prak\9prak\obj\Debug\9prak.exe.config
